@@ -15,52 +15,52 @@ document.addEventListener('DOMContentLoaded', () => {
       'blue'
     ]
   
-    //The Tetrominoes
-    const lTetromino = [
+    //blocks
+    const lBlock = [
       [1, width+1, width*2+1, 2],
       [width, width+1, width+2, width*2+2],
       [1, width+1, width*2+1, width*2],
       [width, width*2, width*2+1, width*2+2]
     ]
   
-    const zTetromino = [
+    const zBlock = [
       [0,width,width+1,width*2+1],
       [width+1, width+2,width*2,width*2+1],
       [0,width,width+1,width*2+1],
       [width+1, width+2,width*2,width*2+1]
     ]
   
-    const tTetromino = [
+    const tBlock = [
       [1,width,width+1,width+2],
       [1,width+1,width+2,width*2+1],
       [width,width+1,width+2,width*2+1],
       [1,width,width+1,width*2+1]
     ]
   
-    const oTetromino = [
+    const oBlock = [
       [0,1,width,width+1],
       [0,1,width,width+1],
       [0,1,width,width+1],
       [0,1,width,width+1]
     ]
   
-    const iTetromino = [
+    const iBlock = [
       [1,width+1,width*2+1,width*3+1],
       [width,width+1,width+2,width+3],
       [1,width+1,width*2+1,width*3+1],
       [width,width+1,width+2,width+3]
     ]
   
-    const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+    const theBlocks = [lBlock, zBlock, tBlock, oBlock, iBlock]
   
     let currentPosition = 4
     let currentRotation = 0
   
-    console.log(theTetrominoes[0][0])
+    console.log(theBlocks[0][0])
   
     //randomly select a Tetromino and its first rotation
-    let random = Math.floor(Math.random()*theTetrominoes.length)
-    let current = theTetrominoes[random][currentRotation]
+    let random = Math.floor(Math.random()*theBlocks.length)
+    let current = theBlocks[random][currentRotation]
   
     //draw the Tetromino
     function draw() {
@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
         current.forEach(index => squares[currentPosition + index].classList.add('taken'))
         //start a new tetromino falling
         random = nextRandom
-        nextRandom = Math.floor(Math.random() * theTetrominoes.length)
-        current = theTetrominoes[random][currentRotation]
+        nextRandom = Math.floor(Math.random() * theBlocks.length)
+        current = theBlocks[random][currentRotation]
         currentPosition = 4
         draw()
         displayShape()
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(currentRotation === current.length) { //if the current rotation gets to 4, make it go back to 0
         currentRotation = 0
       }
-      current = theTetrominoes[random][currentRotation]
+      current = theBlocks[random][currentRotation]
       checkRotatedPosition()
       draw()
     }
@@ -188,11 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
     //the Tetrominos without rotations
     const upNextTetrominoes = [
-      [1, displayWidth+1, displayWidth*2+1, 2], //lTetromino
-      [0, displayWidth, displayWidth+1, displayWidth*2+1], //zTetromino
-      [1, displayWidth, displayWidth+1, displayWidth+2], //tTetromino
-      [0, 1, displayWidth, displayWidth+1], //oTetromino
-      [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1] //iTetromino
+      [1, displayWidth+1, displayWidth*2+1, 2], //lBlock
+      [0, displayWidth, displayWidth+1, displayWidth*2+1], //zBlock
+      [1, displayWidth, displayWidth+1, displayWidth+2], //tBlock
+      [0, 1, displayWidth, displayWidth+1], //oBlock
+      [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1] //iBlock
     ]
   
     //display the shape in the mini-grid display
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         draw()
         timerId = setInterval(moveDown, 1000)
-        nextRandom = Math.floor(Math.random()*theTetrominoes.length)
+        nextRandom = Math.floor(Math.random()*theBlocks.length)
         displayShape()
       }
     })
